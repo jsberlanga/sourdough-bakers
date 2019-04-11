@@ -54,6 +54,9 @@ const NavStyles = styled.ul`
     justify-content: center;
     font-size: 1.5rem;
   }
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
 `;
 
 export default NavStyles;
