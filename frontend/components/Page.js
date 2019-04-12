@@ -14,7 +14,8 @@ const theme = {
   lightYellow: "#fffeec",
   lightGreen: "#aeddcd",
   maxWidth: "70rem",
-  bs: "0 6px 12px 0 rgba(0, 0, 0, 0.1)"
+  bs: "0 6px 12px 0 rgba(0, 0, 0, 0.1)",
+  transform: "skew(-4deg) rotate(-1deg)"
 };
 
 const StyledPage = styled.div`
@@ -23,10 +24,8 @@ const StyledPage = styled.div`
 `;
 
 const Inner = styled.div`
-  max-width: 70rem;
+  max-width: 90vw;
   margin: 0 auto;
-  padding: 2rem;
-  background: ${props => props.theme.blue};
 `;
 
 injectGlobal`
