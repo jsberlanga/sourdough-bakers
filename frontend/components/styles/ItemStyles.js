@@ -30,6 +30,10 @@ const Item = styled.div`
       border: 0;
       padding: 1rem;
     }
+
+    a {
+      cursor: pointer;
+    }
   }
 `;
 

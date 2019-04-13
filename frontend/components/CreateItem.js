@@ -66,7 +66,7 @@ class CreateItem extends Component {
     const { title, description, image, largeImage, price } = this.state;
     return (
       <div>
-        <h2 style={{ textAlign: "center" }}>Sell an Item</h2>
+        <h2 style={{ textAlign: "center" }}>Do you want to sell some bread?</h2>
         <Mutation mutation={CREATE_ITEM_MUTATION} variables={this.state}>
           {(createItem, { loading, error }) => (
             <Form

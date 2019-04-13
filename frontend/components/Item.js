@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
 
+import DeleteItem from "./DeleteItem";
+
 import Title from "./styles/Title";
 import ItemStyles from "./styles/ItemStyles";
 import PriceTag from "./styles/PriceTag";
@@ -58,14 +60,9 @@ class Item extends Component {
           >
             <a>Add To Cart</a>
           </Link>
-          <Link
-            href={{
-              pathname: "/delete",
-              query: { id: item.id }
-            }}
-          >
-            <a>Delete Item</a>
-          </Link>
+          <a>
+            <DeleteItem id={item.id} />
+          </a>
         </div>
       </ItemStyles>
     );
