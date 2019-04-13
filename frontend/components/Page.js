@@ -1,25 +1,27 @@
 import React, { Component } from "react";
 import styled, { ThemeProvider, injectGlobal } from "styled-components";
-import Header from "./Header";
 import Meta from "./Meta";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const theme = {
   pink: "#e4508f",
   blue: "#556fb5",
   gray: "#414F5D",
-  yellow: "#eac100",
+  yellow: "#aeddcd",
   offBlack: "#364f6b",
   offWhite: "#f5f5f5",
   lightGrey: "#dee1ec",
-  lightYellow: "#fffeec",
+  lightGrey2: "#D1D4DF",
+  lightGrey3: "#C5C8D3",
   lightGreen: "#aeddcd",
-  maxWidth: "70rem",
+  lightGreen2: "#A1D0C0",
+  lightGreen3: "#95C4B4",
   bs: "0 6px 12px 0 rgba(0, 0, 0, 0.1)",
   transform: "skew(-4deg) rotate(-1deg)"
 };
 
 const StyledPage = styled.div`
-  background: ${props => props.theme.offWhite};
   color: ${props => props.theme.offBlack};
 `;
 
@@ -38,14 +40,17 @@ injectGlobal`
   html {
     box-sizing: border-box;
     font-size: 10px;
+    margin: 0;
+    padding: 0;
   }
   *, *:before, *:after {
-    box-sizing: inherit
+    box-sizing: inherit;
   }
   body {
     font-family: 'adobe-garamond-pro';
     line-height: 1.7;
-    font-size: 1.6rem
+    font-size: 1.6rem;
+    background: #f5f5f5;
   }
   a {
     text-decoration: none;
@@ -68,6 +73,7 @@ class Page extends Component {
           <Meta />
           <Header />
           <Inner>{this.props.children}</Inner>
+          <Footer />
         </StyledPage>
       </ThemeProvider>
     );
