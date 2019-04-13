@@ -51,7 +51,9 @@ const Form = styled.form`
     font-weight: 600;
     padding: 0.9rem 1.7rem;
     font-family: "adobe-garamond-pro";
+    cursor: pointer;
   }
+
   fieldset {
     border: 0;
     padding: 0;
@@ -68,9 +70,9 @@ const Form = styled.form`
       display: block;
       background-image: linear-gradient(
         to right,
-        #a1d0c0 0%,
-        #aeddcd 50%,
-        #a1d0c0 100%
+        #aeddcd 0%,
+        #95c4b4 50%,
+        #aeddcd 100%
       );
     }
     &[aria-busy="true"]::before {
