@@ -60,7 +60,7 @@ const DELETE_ITEM_MUTATION = gql`
 
 class DeleteItem extends Component {
   state = {
-    modalIsOpen: true
+    modalIsOpen: false
   };
   openModal = () => {
     this.setState({ modalIsOpen: true });
@@ -106,7 +106,7 @@ class DeleteItem extends Component {
               ariaHideApp={false}
             >
               <ModalContent>
-                <button onClick={this.closeModal}>x</button>
+                <button onClick={this.closeModal}>🞭</button>
                 <div>Are you sure you want to delete the item?</div>
                 <button className="delete-btn" onClick={deleteItem}>
                   Delete
