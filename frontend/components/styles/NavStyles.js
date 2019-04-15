@@ -54,8 +54,19 @@ const NavStyles = styled.ul`
     justify-content: center;
     font-size: 1.5rem;
   }
-  @media (max-width: 500px) {
+  @media (max-width: 640px) {
     flex-direction: column;
+    align-items: center;
+    background: ${props => props.theme.lightGrey2};
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+
+    a {
+      /* background: pink; */
+      &:before {
+        width: 0px;
+      }
+    }
   }
 `;
 
