@@ -2,32 +2,12 @@ import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import Router from "next/router";
-import styled from "styled-components";
 
 import Form from "./styles/Form";
 import Error from "./ErrorMessage";
 import { CURRENT_USER_QUERY } from "./User";
 
-const Button = styled.button`
-  margin: 2rem 0 0;
-  position: relative;
-  :disabled {
-    background: ${props => props.theme.lightGrey3};
-    cursor: default;
-    :hover:after {
-      content: "Please fill out the form";
-      background: ${props => props.theme.pink};
-      position: absolute;
-      left: 110%;
-      top: 0;
-      padding: 0.7rem;
-      width: 20rem;
-      font-size: 1.4rem;
-      letter-spacing: 2px;
-      font-weight: 400;
-    }
-  }
-`;
+import FormButton from "./styles/FormButton";
 
 const SIGNUP_MUTATION = gql`
   mutation SIGNUP_MUTATION(
@@ -65,7 +45,7 @@ class SignUp extends Component {
     //   alert(`Welcome ${res.data.signup.name}`);
     // }
 
-    this.setState({ name: "", email: "", password: "" });
+    // this.setState({ name: "", email: "", password: "" });
 
     Router.push({
       pathname: "/"
@@ -115,7 +95,7 @@ class SignUp extends Component {
                     value={password}
                     onChange={this.handleChange}
                   />
-                  <Button
+                  <FormButton
                     type="submit"
                     disabled={
                       !this.state.name ||
@@ -124,7 +104,7 @@ class SignUp extends Component {
                     }
                   >
                     Sign Up
-                  </Button>
+                  </FormButton>
                 </label>
               </fieldset>
             </Form>

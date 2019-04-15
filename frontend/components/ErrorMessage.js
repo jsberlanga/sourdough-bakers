@@ -8,7 +8,9 @@ const ErrorStyles = styled.div`
   background: white;
   margin: 2rem 0;
   border: 1px solid rgba(0, 0, 0, 0.05);
-  border-left: 5px solid ${props => props.theme.pink};
+  border-left: 7px solid ${props => props.theme.pink};
+  letter-spacing: 1.5px;
+  font-size: 1.8rem;
   p {
     margin: 0;
     font-weight: 100;

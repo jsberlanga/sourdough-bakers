@@ -5,7 +5,6 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 const theme = {
-  lightPink: "#FFE9FF",
   pink: "#e4508f",
   blue: "#556fb5",
   gray: "#414F5D",

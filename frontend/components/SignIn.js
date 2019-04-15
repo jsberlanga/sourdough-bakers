@@ -7,29 +7,7 @@ import Form from "./styles/Form";
 import Error from "./ErrorMessage";
 import { CURRENT_USER_QUERY } from "./User";
 
-import styled from "styled-components";
-
-const Button = styled.button`
-  margin: 2rem 0 0;
-  position: relative;
-  :disabled {
-    background: ${props => props.theme.lightGrey3};
-    cursor: default;
-    :hover:after {
-      transition: all 1s;
-      content: "Please fill out the form";
-      background: ${props => props.theme.pink};
-      position: absolute;
-      left: 110%;
-      top: 0;
-      padding: 0.7rem;
-      width: 20rem;
-      font-size: 1.4rem;
-      letter-spacing: 2px;
-      font-weight: 400;
-    }
-  }
-`;
+import FormButton from "./styles/FormButton";
 
 const SIGNIN_MUTATION = gql`
   mutation SIGNIN_MUTATION($email: String!, $password: String!) {
@@ -63,7 +41,7 @@ class SignIn extends Component {
     //   alert(`Welcome ${res.data.signup.name}`);
     // }
 
-    this.setState({ name: "", email: "", password: "" });
+    // this.setState({ name: "", email: "", password: "" }); // don't use so it doesn't appear the content on button on :hover:after
 
     Router.push({
       pathname: "/me"
@@ -104,12 +82,12 @@ class SignIn extends Component {
                     value={password}
                     onChange={this.handleChange}
                   />
-                  <Button
+                  <FormButton
                     type="submit"
                     disabled={!this.state.email || !this.state.password}
                   >
                     Sign In
-                  </Button>
+                  </FormButton>
                 </label>
               </fieldset>
             </Form>
