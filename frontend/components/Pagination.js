@@ -20,7 +20,7 @@ const PAGINATION_QUERY = gql`
 
 const Pagination = props => {
   return (
-    <Query query={PAGINATION_QUERY}>
+    <Query query={PAGINATION_QUERY} fetchPolicy="network-only">
       {({ data, loading, error }) => {
         console.log(data);
         if (loading) return <p>Loading...</p>;
@@ -36,6 +36,7 @@ const Pagination = props => {
                 Sourdough Bakers | Page {page} of {pages}
               </title>
             </Head>
+
             <Link
               prefetch
               href={{
@@ -47,7 +48,8 @@ const Pagination = props => {
                 ⇦ prev
               </a>
             </Link>
-            {props.numberOfPages && (
+
+            {props.numberOfPages >= 1 && (
               <p>
                 Page {page} of {pages}
               </p>
@@ -57,6 +59,7 @@ const Pagination = props => {
                 {count} Item{count > 1 && "s"} Total
               </p>
             )}
+
             <Link
               prefetch
               href={{
