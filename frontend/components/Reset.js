@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
-import Router from "next/router";
+import Link from "next/link";
 
 import Form from "./styles/Form";
 import Error from "./ErrorMessage";
@@ -62,7 +62,25 @@ class Reset extends Component {
               <fieldset aria-busy={loading}>
                 <h2>{this.props.title}</h2>
                 <Error error={error} />
-
+                {!error && !loading && called && (
+                  <Success>
+                    Success! The Password was successfully reset. You can now{" "}
+                    <Link href="/signup">
+                      <a
+                        style={{
+                          textDecoration: "underline",
+                          color: "#fff",
+                          fontWeight: 700,
+                          background: "#e4508f",
+                          padding: "0.7rem 1.4rem",
+                          borderRadius: "5rem"
+                        }}
+                      >
+                        Sign in
+                      </a>
+                    </Link>
+                  </Success>
+                )}
                 <label htmlFor="password">
                   Password
                   <input
