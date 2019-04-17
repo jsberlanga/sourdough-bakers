@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import Modal from "react-modal";
+import Error from "./ErrorMessage";
 
 import styled from "styled-components";
 
@@ -108,7 +109,17 @@ class DeleteItem extends Component {
               <ModalContent>
                 <button onClick={this.closeModal}>🞭</button>
                 <div>Are you sure you want to delete the item?</div>
-                <button className="delete-btn" onClick={deleteItem}>
+                <button
+                  className="delete-btn"
+                  onClick={() => {
+                    deleteItem().catch(err => {
+                      if (err) {
+                        this.closeModal();
+                        alert(err.message);
+                      }
+                    });
+                  }}
+                >
                   Delete
                 </button>
               </ModalContent>
