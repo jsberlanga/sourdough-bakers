@@ -6,9 +6,12 @@ import Footer from "./Footer";
 
 const theme = {
   pink: "#e4508f",
-  blue: "#556fb5",
-  gray: "#414F5D",
-  yellow: "#aeddcd",
+  blue: "#88A2E8",
+  blue2: "#6F89CF",
+  blue3: "#556fb5",
+  grey: "#414F5D",
+  yellow: "#FFDB78",
+  yellow2: "#ffc15e",
   offBlack: "#364f6b",
   offWhite: "#f5f5f5",
   lightGrey: "#dee1ec",

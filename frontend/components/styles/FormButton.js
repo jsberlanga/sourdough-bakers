@@ -3,6 +3,7 @@ import styled from "styled-components";
 const FormButton = styled.button`
   margin: 2rem 0 0;
   position: relative;
+  outline: none;
   :disabled {
     background: ${props => props.theme.lightGrey3};
     cursor: default;

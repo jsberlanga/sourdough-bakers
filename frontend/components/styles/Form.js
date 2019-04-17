@@ -53,7 +53,6 @@ const Form = styled.form`
     font-family: "adobe-garamond-pro";
     cursor: pointer;
   }
-
   fieldset {
     border: 0;
     padding: 0;

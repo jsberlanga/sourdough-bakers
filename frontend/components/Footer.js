@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const StyledFooter = styled.div`
   height: 15rem;
-  background: ${props => props.theme.gray};
+  background: ${props => props.theme.grey};
   color: ${props => props.theme.offWhite};
   position: relative;
   margin-top: 5rem;

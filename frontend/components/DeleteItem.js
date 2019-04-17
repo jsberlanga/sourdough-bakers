@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import Modal from "react-modal";
-import Error from "./ErrorMessage";
-
 import styled from "styled-components";
+
+import Error from "./ErrorMessage";
+import CloseButton from "./styles/CloseButton";
+import OKButton from "./styles/OKButton";
 
 const customStyles = {
   content: {
@@ -28,25 +30,8 @@ const ModalContent = styled.div`
   grid-gap: 0.4rem;
   align-items: center;
   background: ${props => props.theme.lightGrey2};
-  color: ${props => props.theme.gray};
-  padding: 3rem;
-  button {
-    width: min-content;
-    padding: 1.4rem 1.7rem;
-    border-radius: 5rem;
-    border: none;
-    font-family: "adobe-garamond-pro-bold";
-    cursor: pointer;
-    color: #fff;
-    outline: none;
-  }
-  .delete-btn {
-    font-size: 1.7rem;
-    text-transform: uppercase;
-    background: ${props => props.theme.pink};
-    margin: auto;
-    letter-spacing: 5px;
-  }
+  color: ${props => props.theme.grey};
+  padding: 8rem 3rem 0rem;
 `;
 
 import { ALL_ITEMS_QUERY } from "./Items";
@@ -107,10 +92,9 @@ class DeleteItem extends Component {
               ariaHideApp={false}
             >
               <ModalContent>
-                <button onClick={this.closeModal}>🞭</button>
+                <CloseButton onClick={this.closeModal} />
                 <div>Are you sure you want to delete the item?</div>
-                <button
-                  className="delete-btn"
+                <OKButton
                   onClick={() => {
                     deleteItem().catch(err => {
                       if (err) {
@@ -120,8 +104,8 @@ class DeleteItem extends Component {
                     });
                   }}
                 >
-                  Delete
-                </button>
+                  CONFIRM
+                </OKButton>
               </ModalContent>
             </Modal>
           </>

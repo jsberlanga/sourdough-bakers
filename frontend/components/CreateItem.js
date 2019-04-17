@@ -4,6 +4,7 @@ import gql from "graphql-tag";
 import Router from "next/router";
 
 import Form from "./styles/Form";
+import OKButton from "./styles/OKButton";
 import formatMoney from "../lib/formatMoney";
 
 import Error from "./ErrorMessage";
@@ -134,7 +135,7 @@ class CreateItem extends Component {
                     onChange={this.handleChange}
                   />
                 </label>
-                <button type="submit">Submit</button>
+                <OKButton type="submit">Submit</OKButton>
               </fieldset>
             </Form>
           )}

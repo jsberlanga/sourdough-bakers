@@ -5,6 +5,9 @@ import Router from "next/router";
 import NProgress from "nprogress";
 
 import Nav from "./Nav";
+import Cart from "./Cart";
+
+import { IoIosOptions } from "react-icons/io";
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
@@ -29,9 +32,6 @@ const Logo = styled.h1`
     letter-spacing: 3px;
     border-radius: 0.2rem;
   }
-  @media (max-width: 1300px) {
-    text-align: center;
-  }
 `;
 
 const StyledHeader = styled.header`
@@ -39,36 +39,70 @@ const StyledHeader = styled.header`
     border-bottom: 10px solid ${props => props.theme.offBlack};
     height: auto;
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto 1fr auto;
     justify-content: space-between;
     align-items: stretch;
-    @media (max-width: 1300px) {
-      grid-template-columns: 1fr;
-      justify-content: center;
+    .nav-open {
+      display: none;
     }
-  }
+    @media (max-width: 1300px) {
+      text-align: center;
+      grid-template-columns: 1fr;
+    }
+  
   .sub-bar {
     display: grid;
     grid-template-columns: 1fr auto;
     border-bottom: 1px solid ${props => props.theme.lightGrey};
   }
+
+  @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+      text-align: left;
+
+      .nav-open {
+        display: initial;
+        position: absolute;
+        top: 5%;
+        right: 5%;
+        cursor: pointer;
+        color: ${props => props.theme.pink};
+      }
+    }
 `;
 
-const Header = () => (
-  <StyledHeader>
-    <div className="bar">
-      <Logo>
-        <Link href="/">
-          <a>Sourdough Bakers</a>
-        </Link>
-      </Logo>
-      <Nav />
-    </div>
-    <div className="sub-bar">
-      <p>Search</p>
-    </div>
-    <div>Cart</div>
-  </StyledHeader>
-);
+class Header extends React.Component {
+  state = {
+    isOpen: true
+  };
+  render() {
+    const { isOpen } = this.state;
+    return (
+      <StyledHeader>
+        <div className="bar">
+          <Logo>
+            <Link href="/">
+              <a>Sourdough Bakers</a>
+            </Link>
+          </Logo>
+          {isOpen && <Nav />}
+          <IoIosOptions
+            className="nav-open"
+            style={{ fontSize: "3rem" }}
+            onClick={() =>
+              this.setState(currentState => {
+                return { isOpen: !currentState.isOpen };
+              })
+            }
+          />
+        </div>
+        <div className="sub-bar">
+          <p>Search</p>
+        </div>
+        <Cart />
+      </StyledHeader>
+    );
+  }
+}
 
 export default Header;
