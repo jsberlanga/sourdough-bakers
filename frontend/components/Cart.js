@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { Query, Mutation } from "react-apollo";
+import gql from "graphql-tag";
 
 import OKButton from "./styles/OKButton";
 import CloseButton from "./styles/CloseButton";
@@ -13,7 +15,7 @@ const CartStyles = styled.div`
   top: 0;
   right: 0;
   width: 40%;
-  min-width: 500px;
+  min-width: 400px;
   bottom: 0;
   transform: translateX(100%);
   transition: all 0.3s;
@@ -48,20 +50,40 @@ const CartStyles = styled.div`
   }
 `;
 
-const Cart = () => {
-  return (
-    <CartStyles open={false}>
-      <header>
-        <CloseButton />
-        <h3>Your Cart</h3>
-        <p>You have __ Items in your Cart</p>
-      </header>
-      <footer>
-        <p>50.00zl</p>
-        <OKButton>Checkout</OKButton>
-      </footer>
-    </CartStyles>
-  );
-};
+const LOCAL_STATE_QUERY = gql`
+  query {
+    cartOpen @client
+  }
+`;
+
+const TOGGLE_CART_MUTATION = gql`
+  mutation {
+    toggleCart @client
+  }
+`;
+
+const Cart = () => (
+  <Mutation mutation={TOGGLE_CART_MUTATION}>
+    {toggleCart => (
+      <Query query={LOCAL_STATE_QUERY}>
+        {({ data }) => (
+          <CartStyles open={data.cartOpen}>
+            <header>
+              <CloseButton onClick={toggleCart} />
+              <h3>Your Cart</h3>
+              <p>You have __ Items in your Cart</p>
+            </header>
+            <footer>
+              <p>50.00zl</p>
+              <OKButton>Checkout</OKButton>
+            </footer>
+          </CartStyles>
+        )}
+      </Query>
+    )}
+  </Mutation>
+);
 
 export default Cart;
+
+export { LOCAL_STATE_QUERY, TOGGLE_CART_MUTATION };

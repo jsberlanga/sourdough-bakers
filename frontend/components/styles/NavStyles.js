@@ -60,9 +60,8 @@ const NavStyles = styled.ul`
     background: ${props => props.theme.lightGrey2};
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
-
-    a {
-      /* background: pink; */
+    a,
+    button {
       &:before {
         width: 0px;
       }
