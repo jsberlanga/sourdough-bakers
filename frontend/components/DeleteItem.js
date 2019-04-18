@@ -7,6 +7,7 @@ import styled from "styled-components";
 import Error from "./ErrorMessage";
 import CloseButton from "./styles/CloseButton";
 import OKButton from "./styles/OKButton";
+import ItemButton from "./styles/ItemButton";
 
 const customStyles = {
   content: {
@@ -77,13 +78,13 @@ class DeleteItem extends Component {
       >
         {(deleteItem, { error }) => (
           <>
-            <div
+            <ItemButton
               onClick={() => {
                 this.openModal();
               }}
             >
               Delete Item
-            </div>
+            </ItemButton>
             <Modal
               isOpen={this.state.modalIsOpen}
               onRequestClose={this.closeModal}

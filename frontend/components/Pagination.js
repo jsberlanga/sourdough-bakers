@@ -22,7 +22,6 @@ const Pagination = props => {
   return (
     <Query query={PAGINATION_QUERY} fetchPolicy="network-only">
       {({ data, loading, error }) => {
-        console.log(data);
         if (loading) return <p>Loading...</p>;
         if (error) return <Error error={error} />;
 

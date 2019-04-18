@@ -34,7 +34,6 @@ class SignIn extends Component {
     e.preventDefault();
 
     const res = await signup();
-    console.log(res);
 
     // TODO use response to welcome the user like so?
     // if (res) {

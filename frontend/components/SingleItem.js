@@ -46,7 +46,6 @@ const SingleItem = props => {
   return (
     <Query query={SINGLE_ITEM_QUERY} variables={{ id: props.id }}>
       {({ error, loading, data }) => {
-        console.log(data);
         if (error) return <Error error={error} />;
         if (loading) return <p>Loading...</p>;
         if (!data.item) return <p>No Item Found for {props.id}</p>;

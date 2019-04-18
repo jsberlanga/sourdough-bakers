@@ -1,4 +1,6 @@
-endpoint: ${env:PRISMA_ENDPOINT}
+#endpoint: ${env:PRISMA_ENDPOINT}
+#endpoint: https://eu1.prisma.sh/julio-soto-567e4e//dev
+endpoint: https://eu1.prisma.sh/julio-soto-567e4e/backend/dev
 datamodel: datamodel.prisma
 # secret: ${env:PRISMA_SECRET}
 hooks:
