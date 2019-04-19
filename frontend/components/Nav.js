@@ -6,6 +6,7 @@ import { MdShoppingCart } from "react-icons/md";
 import NavStyles from "./styles/NavStyles";
 import SignOut from "./SignOut";
 import User from "./User";
+import CartCount from "./CartCount";
 
 const Nav = () => (
   <User>
@@ -36,6 +37,11 @@ const Nav = () => (
                       fontSize: "3rem",
                       color: "#364f6b"
                     }}
+                  />
+                  <CartCount
+                    count={me.cart.reduce((acc, curr) => {
+                      return acc + curr.quantity;
+                    }, 0)}
                   />
                 </button>
               )}
