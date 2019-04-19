@@ -49,17 +49,9 @@ const StyledHeader = styled.header`
       text-align: center;
       grid-template-columns: 1fr;
     }
-  
-  .sub-bar {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    border-bottom: 1px solid ${props => props.theme.lightGrey};
-  }
-
-  @media (max-width: 768px) {
+    @media (max-width: 768px) {
       grid-template-columns: 1fr;
       text-align: left;
-
       .nav-open {
         display: initial;
         position: absolute;
@@ -69,6 +61,12 @@ const StyledHeader = styled.header`
         color: ${props => props.theme.pink};
       }
     }
+  }
+  .sub-bar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    border-bottom: 1px solid ${props => props.theme.lightGrey};
+  }
 `;
 
 class Header extends React.Component {
