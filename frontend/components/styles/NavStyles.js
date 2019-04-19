@@ -54,7 +54,7 @@ const NavStyles = styled.ul`
     justify-content: center;
     font-size: 1.5rem;
   }
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
     background: ${props => props.theme.lightGrey2};

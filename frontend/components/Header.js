@@ -56,7 +56,7 @@ const StyledHeader = styled.header`
     border-bottom: 1px solid ${props => props.theme.lightGrey};
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
       grid-template-columns: 1fr;
       text-align: left;
 
