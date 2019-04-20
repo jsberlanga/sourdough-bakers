@@ -6,6 +6,7 @@ import NProgress from "nprogress";
 
 import Nav from "./Nav";
 import Cart from "./Cart";
+import Search from "./Search";
 
 import { IoIosOptions } from "react-icons/io";
 
@@ -65,13 +66,16 @@ const StyledHeader = styled.header`
   .sub-bar {
     display: grid;
     grid-template-columns: 1fr auto;
-    border-bottom: 1px solid ${props => props.theme.lightGrey};
   }
 `;
 
 class Header extends React.Component {
   state = {
-    isOpen: true
+    isOpen: true,
+    search: false
+  };
+  handleSearchBarOpen = () => {
+    this.setState({ search: !this.state.search });
   };
   render() {
     const { isOpen } = this.state;
@@ -83,7 +87,7 @@ class Header extends React.Component {
               <a>Sourdough Bakers</a>
             </Link>
           </Logo>
-          {isOpen && <Nav />}
+          {isOpen && <Nav handleSearchBarOpen={this.handleSearchBarOpen} />}
           <IoIosOptions
             className="nav-open"
             style={{ fontSize: "3rem" }}
@@ -94,9 +98,7 @@ class Header extends React.Component {
             }
           />
         </div>
-        <div className="sub-bar">
-          <p>Search</p>
-        </div>
+        <div className="sub-bar">{this.state.search && <Search />}</div>
         <Cart />
       </StyledHeader>
     );

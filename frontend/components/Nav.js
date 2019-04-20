@@ -2,13 +2,14 @@ import Link from "next/link";
 import { Mutation } from "react-apollo";
 import { TOGGLE_CART_MUTATION } from "./Cart";
 
+import { GoSearch } from "react-icons/go";
 import { MdShoppingCart } from "react-icons/md";
 import NavStyles from "./styles/NavStyles";
 import SignOut from "./SignOut";
 import User from "./User";
 import CartCount from "./CartCount";
 
-const Nav = () => (
+const Nav = props => (
   <User>
     {({ data: { me } }) => (
       <NavStyles>
@@ -29,6 +30,18 @@ const Nav = () => (
             <Link href="/profile">
               <a>Account</a>
             </Link>
+            <a onClick={props.handleSearchBarOpen}>
+              <GoSearch
+                style={{
+                  fontSize: "3rem",
+                  fontWeight: 100,
+                  color: "#364f6b",
+                  cursor: "pointer",
+                  marginRight: "1rem"
+                }}
+              />
+              Search
+            </a>
             <Mutation mutation={TOGGLE_CART_MUTATION}>
               {toggleCart => (
                 <button onClick={toggleCart}>

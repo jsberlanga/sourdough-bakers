@@ -12,7 +12,7 @@ const Count = styled.div`
   font-weight: 400;
   font-feature-settings: "tnum";
   font-variant-numeric: tabular-nums;
-  margin-bottom: 3rem;
+  margin-top: -3rem;
 `;
 
 const CartCount = ({ count }) => <Count>{count}</Count>;
