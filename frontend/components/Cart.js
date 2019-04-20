@@ -8,11 +8,11 @@ import OKButton from "./styles/OKButton";
 import CloseButton from "./styles/CloseButton";
 import calcTotalPrice from "../lib/calcTotalPrice";
 import formatMoney from "../lib/formatMoney";
+import TakeMoney from "./TakeMoney";
 
 const CartStyles = styled.div`
-  padding: 20px;
   position: relative;
-  background: #fff;
+  background: ${props => props.theme.offWhite};
   position: fixed;
   height: 100%;
   top: 0;
@@ -23,33 +23,47 @@ const CartStyles = styled.div`
   transform: translateX(100%);
   transition: all 0.3s;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
-  z-index: 5;
+  z-index: 999;
   display: grid;
   grid-template-rows: auto 1fr auto;
   ${props => props.open && `transform: translateX(0);`};
+
   header {
-    border-bottom: 5px solid ${props => props.theme.offBlack};
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
+    padding: 1rem 2rem;
+    border-bottom: 5px solid ${props => props.theme.grey};
   }
+
   footer {
-    border-top: 10px double ${props => props.theme.offBlack};
-    margin-top: 2rem;
-    padding-top: 2rem;
+    padding: 2.5rem 2rem;
+    border-top: 5px solid ${props => props.theme.grey};
     display: grid;
     grid-template-columns: auto auto;
-    align-items: center;
-    font-size: 3rem;
+    justify-content: space-between;
+    font-size: 2.5rem;
     font-weight: 900;
-    p {
-      margin: 0;
-    }
+  }
+  p {
+    margin-top: 0;
   }
   ul {
+    background: ${props => props.theme.lightGrey};
     margin: 0;
     padding: 0;
     list-style: none;
-    overflow: scroll;
+    overflow: auto;
+    li {
+      padding: 2rem;
+      background: ${props => props.theme.lightGrey};
+      border-bottom: 1px solid ${props => props.theme.lightGrey2};
+    }
+  }
+  .cart-name {
+    width: fit-content;
+    transform: ${props => props.theme.transform};
+    padding: 0.5rem 1rem;
+    background: ${props => props.theme.pink};
+    color: ${props => props.theme.offWhite};
+    border-radius: 0.2rem;
   }
 `;
 
@@ -78,7 +92,7 @@ const Cart = () => (
                 <CartStyles open={data.cartOpen}>
                   <header>
                     <CloseButton onClick={toggleCart} />
-                    <h3>{me.name}'s Cart</h3>
+                    <h3 className="cart-name">{me.name}'s Cart</h3>
                     <p>
                       You have {me.cart.length} Item
                       {me.cart.length > 1 ? "s" : null} in your Cart
@@ -92,8 +106,16 @@ const Cart = () => (
                     ))}
                   </ul>
                   <footer>
-                    <p>{formatMoney(calcTotalPrice(me.cart))}</p>
-                    <OKButton>Checkout</OKButton>
+                    <p>
+                      Your cart total: {formatMoney(calcTotalPrice(me.cart))}
+                    </p>
+                    <div style={{ color: "#fff" }}>
+                      {me.cart.length && (
+                        <TakeMoney>
+                          <OKButton>Checkout</OKButton>
+                        </TakeMoney>
+                      )}
+                    </div>
                   </footer>
                 </CartStyles>
               )}
