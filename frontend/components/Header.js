@@ -20,19 +20,40 @@ Router.onRouteChangeError = () => {
   NProgress.done();
 };
 
-const Logo = styled.h1`
-  font-size: 3rem;
-  margin-left: 2rem;
+// const Logo = styled.h1`
+//   font-size: 3rem;
+//   margin-left: 2rem;
+//   position: relative;
+//   transform: ${props => props.theme.transform};
+//   a {
+//     padding: 0.5rem 1rem;
+//     background: ${props => props.theme.pink};
+//     color: ${props => props.theme.offWhite};
+//     text-decoration: none;
+//     letter-spacing: 3px;
+//     border-radius: 0.2rem;
+//   }
+// `;
+
+const Logo = styled.div`
+  background-image: url("../static/logo2.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 25rem;
+  height: 7rem;
   position: relative;
-  transform: ${props => props.theme.transform};
-  a {
-    padding: 0.5rem 1rem;
-    background: ${props => props.theme.pink};
-    color: ${props => props.theme.offWhite};
-    text-decoration: none;
-    letter-spacing: 3px;
-    border-radius: 0.2rem;
+  margin: 1rem 2rem;
+  @media (max-width: 1300px) {
+    width: 36rem;
+    height: 10rem;
+    margin: 0.4rem auto;
   }
+  @media (max-width: 768px) {
+    width: 30rem;
+    height: 7rem;
+    margin: 1rem;
+  }
+  cursor: pointer;
 `;
 
 const StyledHeader = styled.header`
@@ -82,11 +103,9 @@ class Header extends React.Component {
     return (
       <StyledHeader>
         <div className="bar">
-          <Logo>
-            <Link href="/">
-              <a>Sourdough Bakers</a>
-            </Link>
-          </Logo>
+          <Link href="/">
+            <Logo />
+          </Link>
           {isOpen && <Nav handleSearchBarOpen={this.handleSearchBarOpen} />}
           <IoIosOptions
             className="nav-open"

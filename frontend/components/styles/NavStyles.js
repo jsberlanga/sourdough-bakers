@@ -54,6 +54,13 @@ const NavStyles = styled.ul`
     justify-content: center;
     font-size: 1.5rem;
   }
+
+  @media (max-width: 900px) {
+    a {
+      padding: 1.4rem 2.2rem;
+    }
+  }
+
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;

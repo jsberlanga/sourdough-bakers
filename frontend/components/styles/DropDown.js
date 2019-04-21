@@ -9,20 +9,17 @@ const DropDown = styled.div`
 
 const DropDownItem = styled.div`
   cursor: pointer;
-  letter-spacing: 1.5px;
-  font-style: italic;
+  letter-spacing: 1.4px;
 
   border-bottom: 1px solid ${props => props.theme.lightGrey};
-  background: ${props =>
-    props.highlighted ? "#DCDCDC" : props.theme.offWhite};
+  background: ${props => (props.highlighted ? props.theme.offWhite : "#fff")};
   padding: 1rem;
   transition: all 0.2s;
   ${props => (props.highlighted ? "padding-left: 2rem;" : null)};
   display: flex;
   align-items: center;
   border-left: 2rem solid
-    ${props =>
-      props.highlighted ? props.theme.lightGrey3 : props.theme.offWhite};
+    ${props => (props.highlighted ? props.theme.pink : props.theme.offWhite)};
   img {
     margin-right: 10px;
   }
@@ -43,7 +40,7 @@ const SearchBar = styled.div`
   display: grid;
   grid-template-columns: min-content 1fr;
   align-items: center;
-  background: #e8e8e8;
+  background: ${props => props.theme.yellow};
   height: 7rem;
   overflow: hidden;
   animation: ${appear} 0.5s;
@@ -65,12 +62,12 @@ const SearchBar = styled.div`
     font-size: 2rem;
     outline: none;
     font-family: "adobe-garamond-pro";
-    background: #e8e8e8;
+    background: ${props => props.theme.yellow};
     text-align: left;
-    letter-spacing: 2px;
+    letter-spacing: 1.4px;
 
     ::placeholder {
-      letter-spacing: 2px;
+      letter-spacing: 1.4px;
       font-size: 2rem;
       font-style: italic;
       color: ${props => props.theme.grey};

@@ -37,7 +37,7 @@ const Nav = props => (
                   fontWeight: 100,
                   color: "#364f6b",
                   cursor: "pointer",
-                  marginRight: "1rem"
+                  marginRight: "0.3rem"
                 }}
               />
               Search
