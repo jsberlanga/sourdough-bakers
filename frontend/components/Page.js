@@ -20,7 +20,7 @@ const theme = {
   lightGreen: "#aeddcd",
   lightGreen2: "#A1D0C0",
   lightGreen3: "#95C4B4",
-  bs: "0 6px 12px 0 rgba(0, 0, 0, 0.1)",
+  bs: "4px 6px 6px -2px rgba(65, 79, 93, 0.1)",
   transform: "skew(-4deg) rotate(-1deg)"
 };
 
@@ -41,9 +41,15 @@ injectGlobal`
     font-style: normal
   }
   @font-face {
+    font-family: 'adobe-garamond-pro-italic';
+    src: url('/static/AGaramondPro-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic
+  }
+  @font-face {
     font-family: 'adobe-garamond-pro-bold';
     src: url('/static/AGaramondPro-Bold.woff') format('woff');
-    font-weight: bold;
+    font-weight: 700;
     font-style: normal
   }
   html {

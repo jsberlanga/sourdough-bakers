@@ -48,31 +48,34 @@ class TakeMoney extends React.Component {
   render() {
     return (
       <User>
-        {({ data: { me } }) => (
-          <Mutation
-            mutation={CREATE_ORDER_MUTATION}
-            refetchQueries={[{ query: CURRENT_USER_QUERY }]}
-          >
-            {createOrder => (
-              <StripeCheckout
-                amount={calcTotalPrice(me.cart)}
-                name="Sourdough Bakers"
-                description={`Payment for the order of ${totalItems(
-                  me.cart
-                )} products`}
-                image={
-                  me.cart.length && me.cart[0].item && me.cart[0].item.image
-                }
-                stripeKey="pk_test_eW3DMzcsDN9fVdyOu8EaPye300pxd1vdQd"
-                currency="PLN"
-                email={me.email}
-                token={res => this.handleToken(res, createOrder)}
-              >
-                {this.props.children}
-              </StripeCheckout>
-            )}
-          </Mutation>
-        )}
+        {({ data: { me } }) => {
+          if (!me) return null;
+          return (
+            <Mutation
+              mutation={CREATE_ORDER_MUTATION}
+              refetchQueries={[{ query: CURRENT_USER_QUERY }]}
+            >
+              {createOrder => (
+                <StripeCheckout
+                  amount={calcTotalPrice(me.cart)}
+                  name="Sourdough Bakers"
+                  description={`Payment for the order of ${totalItems(
+                    me.cart
+                  )} products`}
+                  image={
+                    me.cart.length && me.cart[0].item && me.cart[0].item.image
+                  }
+                  stripeKey="pk_test_eW3DMzcsDN9fVdyOu8EaPye300pxd1vdQd"
+                  currency="PLN"
+                  email={me.email}
+                  token={res => this.handleToken(res, createOrder)}
+                >
+                  {this.props.children}
+                </StripeCheckout>
+              )}
+            </Mutation>
+          );
+        }}
       </User>
     );
   }

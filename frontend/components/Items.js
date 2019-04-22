@@ -42,7 +42,7 @@ class Items extends Component {
   render() {
     return (
       <Center>
-        <p>Items</p>
+        <h2>Check all our products!</h2>
         <Pagination page={this.props.page} />
         <Query
           query={ALL_ITEMS_QUERY}
