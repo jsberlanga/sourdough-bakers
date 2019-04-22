@@ -9,6 +9,8 @@ import formatMoney from "../lib/formatMoney";
 
 import Error from "./ErrorMessage";
 
+import ingredients from "../lib/ingredients";
+
 const CREATE_ITEM_MUTATION = gql`
   mutation CREATE_ITEM_MUTATION(
     $title: String!
@@ -16,6 +18,7 @@ const CREATE_ITEM_MUTATION = gql`
     $price: Int!
     $image: String
     $largeImage: String
+    $flour: String!
   ) {
     createItem(
       title: $title
@@ -23,6 +26,7 @@ const CREATE_ITEM_MUTATION = gql`
       price: $price
       image: $image
       largeImage: $largeImage
+      flour: $flour
     ) {
       id
     }
@@ -35,7 +39,8 @@ class CreateItem extends Component {
     description: "",
     image: "",
     largeImage: "",
-    price: 0
+    price: undefined,
+    flour: ""
   };
   handleChange = e => {
     const { name, type, value } = e.target;
@@ -63,7 +68,7 @@ class CreateItem extends Component {
   };
 
   render() {
-    const { title, description, image, largeImage, price } = this.state;
+    const { title, description, image, largeImage, price, flour } = this.state;
     return (
       <div>
         <h2 style={{ textAlign: "center" }}>Do you want to sell some bread?</h2>
@@ -117,7 +122,7 @@ class CreateItem extends Component {
                     type="number"
                     id="price"
                     name="price"
-                    placeholder="Price"
+                    placeholder="Price must be in cents"
                     required
                     value={price}
                     onChange={this.handleChange}
@@ -134,6 +139,18 @@ class CreateItem extends Component {
                     onChange={this.handleChange}
                   />
                 </label>
+                <label htmlFor="flour">
+                  Type of Flour
+                  <span style={{ fontStyle: "italic" }} />
+                  <select name="flour" onChange={this.handleChange}>
+                    {ingredients.flour.map(flour => (
+                      <option key={flour} value={flour}>
+                        {flour}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+
                 <OKButton type="submit">Submit</OKButton>
               </fieldset>
             </Form>

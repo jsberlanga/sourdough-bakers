@@ -25,6 +25,7 @@ type Item {
   image: String
   largeImage: String
   price: Int!
+  flour: String!
   user: User!
 }
 

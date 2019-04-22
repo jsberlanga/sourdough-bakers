@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/julio-soto-567e4e/backend/dev
-# timestamp: Sat Apr 20 2019 21:46:28 GMT+0200 (Central European Summer Time)
+# timestamp: Mon Apr 22 2019 18:15:59 GMT+0200 (Central European Summer Time)
 
 type AggregateCartItem {
   count: Int!
@@ -329,6 +329,7 @@ type Item implements Node {
   image: String
   largeImage: String
   price: Int!
+  flour: String!
   user: User!
 }
 
@@ -349,6 +350,7 @@ input ItemCreateInput {
   image: String
   largeImage: String
   price: Int!
+  flour: String!
   user: UserCreateOneInput!
 }
 
@@ -379,6 +381,8 @@ enum ItemOrderByInput {
   largeImage_DESC
   price_ASC
   price_DESC
+  flour_ASC
+  flour_DESC
 }
 
 type ItemPreviousValues {
@@ -388,6 +392,7 @@ type ItemPreviousValues {
   image: String
   largeImage: String
   price: Int!
+  flour: String!
 }
 
 type ItemSubscriptionPayload {
@@ -435,6 +440,7 @@ input ItemUpdateDataInput {
   image: String
   largeImage: String
   price: Int
+  flour: String
   user: UserUpdateOneRequiredInput
 }
 
@@ -444,6 +450,7 @@ input ItemUpdateInput {
   image: String
   largeImage: String
   price: Int
+  flour: String
   user: UserUpdateOneRequiredInput
 }
 
@@ -453,6 +460,7 @@ input ItemUpdateManyMutationInput {
   image: String
   largeImage: String
   price: Int
+  flour: String
 }
 
 input ItemUpdateOneInput {
@@ -700,6 +708,46 @@ input ItemWhereInput {
 
   """All values greater than or equal the given value."""
   price_gte: Int
+  flour: String
+
+  """All values that are not equal to given value."""
+  flour_not: String
+
+  """All values that are contained in given list."""
+  flour_in: [String!]
+
+  """All values that are not contained in given list."""
+  flour_not_in: [String!]
+
+  """All values less than the given value."""
+  flour_lt: String
+
+  """All values less than or equal the given value."""
+  flour_lte: String
+
+  """All values greater than the given value."""
+  flour_gt: String
+
+  """All values greater than or equal the given value."""
+  flour_gte: String
+
+  """All values containing the given string."""
+  flour_contains: String
+
+  """All values not containing the given string."""
+  flour_not_contains: String
+
+  """All values starting with the given string."""
+  flour_starts_with: String
+
+  """All values not starting with the given string."""
+  flour_not_starts_with: String
+
+  """All values ending with the given string."""
+  flour_ends_with: String
+
+  """All values not ending with the given string."""
+  flour_not_ends_with: String
   user: UserWhereInput
 }
 

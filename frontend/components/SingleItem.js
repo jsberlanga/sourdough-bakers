@@ -38,6 +38,7 @@ const SINGLE_ITEM_QUERY = gql`
       description
       price
       largeImage
+      flour
     }
   }
 `;
@@ -62,6 +63,7 @@ const SingleItem = props => {
                 <span style={{ fontStyle: "italic" }}>{item.title}</span>
               </h2>
               <p>{item.description}</p>
+              <p>The main flour used for this product was {item.flour}.</p>
             </div>
           </SingleItemStyles>
         );

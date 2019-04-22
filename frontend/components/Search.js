@@ -15,6 +15,7 @@ const SEARCH_ITEMS_QUERY = gql`
         OR: [
           { title_contains: $searchTerm }
           { description_contains: $searchTerm }
+          { flour_contains: $searchTerm }
         ]
       }
     ) {
@@ -73,7 +74,8 @@ class AutoComplete extends React.Component {
                   <input
                     {...getInputProps({
                       type: "search",
-                      placeholder: "Search for a product",
+                      placeholder:
+                        "You can search for a product or type of flour",
                       id: "search",
                       className: this.state.loading ? "loading" : "",
                       onChange: e => {
