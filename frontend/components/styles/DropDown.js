@@ -70,7 +70,6 @@ const SearchBar = styled.div`
       letter-spacing: 1.4px;
       font-size: 2rem;
       font-family: "adobe-garamond-pro-italic";
-
       color: ${props => props.theme.grey};
       opacity: 0.7;
     }

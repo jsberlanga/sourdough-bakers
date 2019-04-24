@@ -53,6 +53,11 @@ const Logo = styled.div`
     height: 7rem;
     margin: 1rem;
   }
+  @media (max-width: 360px) {
+    width: 24rem;
+    height: 6rem;
+    margin: 1rem;
+  }
   cursor: pointer;
 `;
 
@@ -109,7 +114,11 @@ class Header extends React.Component {
           {isOpen && <Nav handleSearchBarOpen={this.handleSearchBarOpen} />}
           <IoIosOptions
             className="nav-open"
-            style={{ fontSize: "3rem" }}
+            style={{
+              fontSize: "3rem",
+              position: "absolute",
+              top: "2rem"
+            }}
             onClick={() =>
               this.setState(currentState => {
                 return { isOpen: !currentState.isOpen };

@@ -18,7 +18,7 @@ const CartStyles = styled.div`
   top: 0;
   right: 0;
   width: 40%;
-  min-width: 400px;
+  min-width: 320px;
   bottom: 0;
   transform: translateX(100%);
   transition: all 0.3s;
@@ -64,6 +64,15 @@ const CartStyles = styled.div`
     background: ${props => props.theme.pink};
     color: ${props => props.theme.offWhite};
     border-radius: 0.2rem;
+    @media (max-width: 678px) {
+      width: min-content;
+    }
+  }
+
+  @media (max-width: 480px) {
+    * {
+      font-size: 95% !important;
+    }
   }
 `;
 
@@ -91,7 +100,7 @@ const Cart = () => (
               {({ data }) => (
                 <CartStyles open={data.cartOpen}>
                   <header>
-                    <CloseButton onClick={toggleCart} />
+                    <CloseButton style={{ zIndex: 1 }} onClick={toggleCart} />
                     <h3 className="cart-name">{me.name}'s Cart</h3>
                     <p>
                       You have {me.cart.length} Item

@@ -13,10 +13,15 @@ const OrderListStyles = styled.li`
     box-shadow: ${props => props.theme.bs};
     border-radius: 1rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
-    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-gap: 1rem;
     text-align: center;
+    @media (max-width: 1000px) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+    }
     & > * {
       margin: 0;
       padding: 1rem 0;

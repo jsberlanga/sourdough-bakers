@@ -56,6 +56,8 @@ const ImageContainer = styled.div`
     min-height: 60vh;
   }
   @media (max-width: 640px) {
+    min-height: 60vh;
+
     font-size: 6rem;
     .title-1 {
       top: 0;
@@ -66,8 +68,11 @@ const ImageContainer = styled.div`
     .title-3 {
       top: 12rem;
     }
+    .subtitle {
+      font-size: 4rem;
+    }
     .subtitle-1 {
-      top: 18rem;
+      top: 20rem;
     }
     .subtitle-2 {
       top: 24rem;
