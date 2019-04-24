@@ -43,9 +43,13 @@ const Query = {
     );
     // 3. Check permissions to see the order
     const ownsOrder = order.user.id === ctx.request.userId;
-    const hasAdminPermissions = ctx.request.user.permissions.includes("ADMIN");
-    if (!ownsOrder || !hasAdminPermissions)
+    console.log(ctx.request.user.permissions);
+    const hasAdminPermissions = ctx.request.user.permissions.filter(
+      permission => permission.includes(["ADMIN", "VIEWORDER"])
+    );
+    if (!ownsOrder || !hasAdminPermissions) {
       throw new Error("You are not allowed to see that!");
+    }
     // 4. Return the order
     return order;
   },

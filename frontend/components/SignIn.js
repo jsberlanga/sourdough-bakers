@@ -43,7 +43,7 @@ class SignIn extends Component {
     // this.setState({ name: "", email: "", password: "" }); // don't use so it doesn't appear the content on button on :hover:after
 
     Router.push({
-      pathname: "/me"
+      pathname: "/profile"
     });
   };
 

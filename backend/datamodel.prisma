@@ -5,6 +5,7 @@ enum Permission {
   ITEMUPDATE
   ITEMDELETE
   PERMISSIONUPDATE
+  VIEWORDER
 }
 
 type User {
@@ -16,6 +17,7 @@ type User {
   resetTokenExpiry: String
   permissions: [Permission] @scalarList(strategy: RELATION)
   cart: [CartItem!]!
+  items: [Item]!
 }
 
 type Item {

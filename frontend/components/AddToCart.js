@@ -16,6 +16,9 @@ const ADD_TO_CART_MUTATION = gql`
 `;
 
 class AddToCart extends Component {
+  state = {
+    quantity: 1
+  };
   render() {
     const { id } = this.props;
     return (
@@ -24,15 +27,9 @@ class AddToCart extends Component {
         variables={{ id }}
         refetchQueries={[{ query: CURRENT_USER_QUERY }]}
       >
-        {(addToCart, { error, loading }) => {
+        {(addToCart, { loading }) => {
           return (
-            <ItemButton
-              disabled={loading}
-              onClick={e => {
-                e.preventDefault();
-                addToCart(id);
-              }}
-            >
+            <ItemButton disabled={loading} onClick={addToCart}>
               Add{loading && "ing"}{" "}
               <MdShoppingCart
                 style={{

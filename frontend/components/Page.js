@@ -25,12 +25,15 @@ const theme = {
 };
 
 const StyledPage = styled.div`
-  color: ${props => props.theme.offBlack};
+  color: ${props => props.theme.grey};
+  position: relative;
+  min-height: 100vh;
 `;
 
 const Inner = styled.div`
   max-width: 90vw;
   margin: 0 auto;
+  padding-bottom: 10rem;
 `;
 
 injectGlobal`
@@ -49,6 +52,12 @@ injectGlobal`
   @font-face {
     font-family: 'adobe-garamond-pro-bold';
     src: url('/static/AGaramondPro-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal
+  }
+  @font-face {
+    font-family: 'montserrat';
+    src: url('/static/montserrat.woff') format('woff');
     font-weight: 700;
     font-style: normal
   }

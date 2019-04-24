@@ -2,7 +2,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { randomBytes } = require("crypto");
 const { promisify } = require("util");
-const { transport, makeANiceEmail } = require("../mail");
+const { transport, emailOutput } = require("../mail");
 const { hasPermission } = require("../utils");
 const stripe = require("../stripe");
 
@@ -15,7 +15,7 @@ const Mutations = {
     const item = await ctx.db.mutation.createItem(
       {
         data: {
-          // This is how to create a relationship between the Item and the User
+          // 1. "connect" to create a relationship between the Item and the User
           user: {
             connect: {
               id: ctx.request.userId
@@ -32,11 +32,11 @@ const Mutations = {
     return item;
   },
   updateItem(parent, args, ctx, info) {
-    // first take a copy of the updates
+    // 1. Copy of the updates
     const updates = { ...args };
-    // remove the ID from the updates
+    // 2. Remove the ID from the updates
     delete updates.id;
-    // run the update method
+    // 3. Run the updateItem method
     return ctx.db.mutation.updateItem(
       {
         data: updates,
@@ -49,7 +49,7 @@ const Mutations = {
   },
   async deleteItem(parent, args, ctx, info) {
     const where = { id: args.id };
-    // 1. find the item
+    // 1. Find the item
     const item = await ctx.db.query.item({ where }, `{ id title user { id }}`);
     // 2. Check if they own that item, or have the permissions
     const ownsItem = item.user.id === ctx.request.userId;
@@ -75,7 +75,7 @@ const Mutations = {
         data: {
           ...args,
           password,
-          permissions: { set: ["USER"] }
+          permissions: { set: ["USER", "VIEWORDER"] }
         }
       },
       info
@@ -94,7 +94,7 @@ const Mutations = {
     // 1. check if there is a user with that email
     const user = await ctx.db.query.user({ where: { email } });
     if (!user) {
-      throw new Error(`No such user found for email ${email}`);
+      throw new Error(`No such user was found for the email ${email}`);
     }
     // 2. Check if their password is correct
     const valid = await bcrypt.compare(password, user.password);
@@ -119,7 +119,7 @@ const Mutations = {
     // 1. Check if this is a real user
     const user = await ctx.db.query.user({ where: { email: args.email } });
     if (!user) {
-      throw new Error(`No such user found for email ${args.email}`);
+      throw new Error(`No such user was found for the email ${args.email}`);
     }
     // 2. Set a reset token and expiry on that user
     const randomBytesPromiseified = promisify(randomBytes);
@@ -131,10 +131,10 @@ const Mutations = {
     });
     // 3. Email them that reset token
     const mailRes = await transport.sendMail({
-      from: "wes@wesbos.com",
+      from: "info@sourdoughbakers.com",
       to: user.email,
       subject: "Your Password Reset Token",
-      html: makeANiceEmail(`Your Password Reset Token is here!
+      html: emailOutput(`Your Password Reset Token is here!
       \n\n
       <a href="${
         process.env.FRONTEND_URL
@@ -216,7 +216,7 @@ const Mutations = {
     // 1. Make sure they are signed in
     const { userId } = ctx.request;
     if (!userId) {
-      throw new Error("You must be signed in soooon");
+      throw new Error("You must be signed in");
     }
     // 2. Query the users current cart
     const [existingCartItem] = await ctx.db.query.cartItems({
@@ -227,7 +227,6 @@ const Mutations = {
     });
     // 3. Check if that item is already in their cart and increment by 1 if it is
     if (existingCartItem) {
-      console.log("This item is already in their cart");
       return ctx.db.mutation.updateCartItem(
         {
           where: { id: existingCartItem.id },

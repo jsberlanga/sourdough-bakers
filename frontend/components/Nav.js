@@ -11,64 +11,67 @@ import CartCount from "./CartCount";
 
 const Nav = props => (
   <User>
-    {({ data: { me } }) => (
-      <NavStyles>
-        <Link href="/">
-          <a>Home</a>
-        </Link>
-        <Link href="/items">
-          <a>Shop</a>
-        </Link>
-        {me && (
-          <>
-            <Link href="/sell">
-              <a>Sell</a>
-            </Link>
-            <Link href="/orders">
-              <a>Orders</a>
-            </Link>
-            <Link href="/profile">
-              <a>Account</a>
-            </Link>
-            <a onClick={props.handleSearchBarOpen}>
-              <GoSearch
-                style={{
-                  fontSize: "3rem",
-                  fontWeight: 100,
-                  color: "#364f6b",
-                  cursor: "pointer",
-                  marginRight: "0.3rem"
-                }}
-              />
-              Search
-            </a>
-            <Mutation mutation={TOGGLE_CART_MUTATION}>
-              {toggleCart => (
-                <button onClick={toggleCart}>
-                  <MdShoppingCart
-                    style={{
-                      fontSize: "3rem",
-                      color: "#364f6b"
-                    }}
-                  />
-                  <CartCount
-                    count={me.cart.reduce((acc, curr) => {
-                      return acc + curr.quantity;
-                    }, 0)}
-                  />
-                </button>
-              )}
-            </Mutation>
-            <SignOut />
-          </>
-        )}
-        {!me && (
-          <Link href="/signup">
-            <a>Sign In</a>
+    {({ data }) => {
+      const me = data ? data.me : null;
+      return (
+        <NavStyles>
+          <Link href="/">
+            <a>Home</a>
           </Link>
-        )}
-      </NavStyles>
-    )}
+          <Link href="/items">
+            <a>Shop</a>
+          </Link>
+          {me && (
+            <>
+              <Link href="/sell">
+                <a>Sell</a>
+              </Link>
+              <Link href="/orders">
+                <a>Orders</a>
+              </Link>
+              <Link href="/profile">
+                <a>Account</a>
+              </Link>
+              <a onClick={props.handleSearchBarOpen}>
+                <GoSearch
+                  style={{
+                    fontSize: "3rem",
+                    fontWeight: 100,
+                    color: "#364f6b",
+                    cursor: "pointer",
+                    marginRight: "0.3rem"
+                  }}
+                />
+                Search
+              </a>
+              <Mutation mutation={TOGGLE_CART_MUTATION}>
+                {toggleCart => (
+                  <button onClick={toggleCart}>
+                    <MdShoppingCart
+                      style={{
+                        fontSize: "3rem",
+                        color: "#364f6b"
+                      }}
+                    />
+                    <CartCount
+                      count={me.cart.reduce((acc, curr) => {
+                        return acc + curr.quantity;
+                      }, 0)}
+                    />
+                  </button>
+                )}
+              </Mutation>
+              <SignOut />
+            </>
+          )}
+          {!me && (
+            <Link href="/signup">
+              <a>Sign In</a>
+            </Link>
+          )}
+        </NavStyles>
+      );
+    }}
   </User>
 );
 

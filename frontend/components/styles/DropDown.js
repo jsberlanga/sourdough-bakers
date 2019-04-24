@@ -69,7 +69,8 @@ const SearchBar = styled.div`
     ::placeholder {
       letter-spacing: 1.4px;
       font-size: 2rem;
-      font-style: italic;
+      font-family: "adobe-garamond-pro-italic";
+
       color: ${props => props.theme.grey};
       opacity: 0.7;
     }

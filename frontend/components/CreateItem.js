@@ -39,8 +39,8 @@ class CreateItem extends Component {
     description: "",
     image: "",
     largeImage: "",
-    price: undefined,
-    flour: ""
+    price: "",
+    flour: "Rye Flour"
   };
   handleChange = e => {
     const { name, type, value } = e.target;
@@ -141,7 +141,6 @@ class CreateItem extends Component {
                 </label>
                 <label htmlFor="flour">
                   Type of Flour
-                  <span style={{ fontStyle: "italic" }} />
                   <select name="flour" onChange={this.handleChange}>
                     {ingredients.flour.map(flour => (
                       <option key={flour} value={flour}>

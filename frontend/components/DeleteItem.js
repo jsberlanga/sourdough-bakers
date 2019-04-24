@@ -3,11 +3,13 @@ import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import Modal from "react-modal";
 import styled from "styled-components";
+import Router from "next/router";
 
 import Error from "./ErrorMessage";
 import CloseButton from "./styles/CloseButton";
 import OKButton from "./styles/OKButton";
 import ItemButton from "./styles/ItemButton";
+import { CURRENT_USER_QUERY } from "./User";
 
 const customStyles = {
   content: {
@@ -68,13 +70,13 @@ class DeleteItem extends Component {
     // 3. Put the items back
     cache.writeQuery({ query: ALL_ITEMS_QUERY, data });
   };
-
   render() {
     return (
       <Mutation
         mutation={DELETE_ITEM_MUTATION}
         variables={{ id: this.props.id }}
         update={this.updateCache}
+        refetchQueries={[{ query: CURRENT_USER_QUERY }]}
       >
         {(deleteItem, { error }) => (
           <>

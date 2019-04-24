@@ -28,6 +28,9 @@ const SingleItemStyles = styled.div`
     grid-template-columns: 1fr;
     grid-template-rows: 2fr 1fr;
   }
+  .item-title {
+    font-family: "adobe-garamond-pro-italic";
+  }
 `;
 
 const SINGLE_ITEM_QUERY = gql`
@@ -59,8 +62,7 @@ const SingleItem = props => {
             <img src={item.largeImage} alt={item.title} />
             <div className="details">
               <h2>
-                Viewing:{" "}
-                <span style={{ fontStyle: "italic" }}>{item.title}</span>
+                Viewing: <span className="item-title">{item.title}</span>
               </h2>
               <p>{item.description}</p>
               <p>The main flour used for this product was {item.flour}.</p>
