@@ -32,7 +32,7 @@ const totalItems = cart => {
 class TakeMoney extends React.Component {
   handleToken = async (res, createOrder) => {
     NProgress.start();
-    console.log("token id", res.id);
+    // console.log("token id", res.id);
 
     const order = await createOrder({
       variables: {

@@ -47,7 +47,6 @@ class AutoComplete extends React.Component {
       query: SEARCH_ITEMS_QUERY,
       variables: { searchTerm: e.target.value.trim() }
     });
-    console.log(res);
     this.setState(() => {
       return { items: res.data.items, loading: false };
     });

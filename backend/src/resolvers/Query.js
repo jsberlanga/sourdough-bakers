@@ -43,7 +43,6 @@ const Query = {
     );
     // Check permissions to see the order
     const ownsOrder = order.user.id === ctx.request.userId;
-    console.log(ctx.request.user.permissions);
     const hasAdminPermissions = ctx.request.user.permissions.filter(
       permission => permission.includes(["ADMIN", "VIEWORDER"])
     );

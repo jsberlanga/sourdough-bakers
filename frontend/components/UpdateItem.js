@@ -44,7 +44,6 @@ class UpdateItem extends Component {
   state = {};
   handleChange = e => {
     const { name, type, value } = e.target;
-    console.log({ name, type, value });
 
     const val = type === "number" ? parseFloat(value) : value;
 

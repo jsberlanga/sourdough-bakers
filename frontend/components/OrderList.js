@@ -38,7 +38,6 @@ const OrderList = props => {
       {({ data: { orders }, loading, error }) => {
         if (loading) return <p>Loading...</p>;
         if (error) return <Error error={error} />;
-        console.log(orders);
         return (
           <>
             <div style={{ textAlign: "center" }}>

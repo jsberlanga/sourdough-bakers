@@ -44,7 +44,6 @@ class CreateItem extends Component {
   };
   handleChange = e => {
     const { name, type, value } = e.target;
-    console.log({ name, type, value });
 
     const val = type === "number" ? parseFloat(value) : value;
 
@@ -78,7 +77,6 @@ class CreateItem extends Component {
               onSubmit={async e => {
                 e.preventDefault();
                 const res = await createItem();
-                console.log(res);
                 Router.push({
                   pathname: "/item",
                   query: { id: res.data.createItem.id }
