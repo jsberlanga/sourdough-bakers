@@ -1,8 +1,10 @@
 #endpoint: ${env:PRISMA_ENDPOINT}
 #endpoint: https://eu1.prisma.sh/julio-soto-567e4e//dev
-endpoint: https://eu1.prisma.sh/julio-soto-567e4e/backend/dev
+#endpoint: https://eu1.prisma.sh/julio-soto-567e4e/backend/dev
+
+endpoint: https://sourdough-prod-9ed22fa123.herokuapp.com/sourdough-bakers-prod/prod
 datamodel: datamodel.prisma
-# secret: ${env:PRISMA_SECRET}
+secret: ${env:PRISMA_SECRET}
 hooks:
   post-deploy:
     - graphql get-schema -p prisma

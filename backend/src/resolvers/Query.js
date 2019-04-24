@@ -18,21 +18,21 @@ const Query = {
     );
   },
   async users(parent, args, ctx, info) {
-    // 1. Check if user is logged in
+    // Check if user is logged in
     if (!ctx.request.userId) {
       throw new Error("You must be logged in");
     }
-    // 2. Check permissions
+    // Check permissions
     hasPermission(ctx.request.user, ["ADMIN", "PERMISSIONUPDATE"]);
 
     return ctx.db.query.users({}, info);
   },
   async order(parent, args, ctx, info) {
-    // 1. Check if user is logged in
+    // Check if user is logged in
     if (!ctx.request.userId) {
       throw new Error("You must be logged in");
     }
-    // 2. Query current order
+    // Query current order
     const order = await ctx.db.query.order(
       {
         where: {
@@ -41,7 +41,7 @@ const Query = {
       },
       info
     );
-    // 3. Check permissions to see the order
+    // Check permissions to see the order
     const ownsOrder = order.user.id === ctx.request.userId;
     console.log(ctx.request.user.permissions);
     const hasAdminPermissions = ctx.request.user.permissions.filter(
@@ -50,7 +50,7 @@ const Query = {
     if (!ownsOrder || !hasAdminPermissions) {
       throw new Error("You are not allowed to see that!");
     }
-    // 4. Return the order
+    // Return the order
     return order;
   },
   async orders(parent, args, ctx, info) {
